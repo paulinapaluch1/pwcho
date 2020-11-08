@@ -15,7 +15,6 @@ public class PfwchoApplication {
 	static final String USER = "ppaluch";
 	static final String PASS = "ppaluch";
 
-
 	public static void main(String[] args) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -35,10 +34,18 @@ public class PfwchoApplication {
 			resultSet.close();
 			if(!exists) {
 				String sql = "CREATE DATABASE PFWCHO";
-				String sql2 = "CREATE TABLE pfwcho.user (`id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(45) DEFAULT NULL, `surname` varchar(45) DEFAULT NULL, PRIMARY KEY (`id`)) ";
 				stmt.execute(sql);
+			}
+
+			DatabaseMetaData dbm = conn.getMetaData();
+			ResultSet tables = dbm.getTables(null, null, "user", null);
+			if (tables.next()) {
+			}
+			else {
+				String sql2 = "CREATE TABLE pfwcho.user (`id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(45) DEFAULT NULL, `surname` varchar(45) DEFAULT NULL, PRIMARY KEY (`id`)) ";
 				stmt.execute(sql2);
 			}
+
 		}catch(SQLException se){
 			se.printStackTrace();
 		}catch(Exception e){
