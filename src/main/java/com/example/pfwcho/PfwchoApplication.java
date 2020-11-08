@@ -36,8 +36,8 @@ public class PfwchoApplication {
 			if(!exists) {
 				String sql = "CREATE DATABASE PFWCHO";
 				String sql2 = "CREATE TABLE pfwcho.user (`id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(45) DEFAULT NULL, `surname` varchar(45) DEFAULT NULL, PRIMARY KEY (`id`)) ";
-				stmt.executeUpdate(sql);
-				stmt.executeUpdate(sql2);
+				stmt.execute(sql);
+				stmt.execute(sql2);
 			}
 		}catch(SQLException se){
 			se.printStackTrace();
