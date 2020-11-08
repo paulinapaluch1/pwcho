@@ -9,7 +9,7 @@ import java.sql.*;
 public class PfwchoApplication {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://Full2020-86381:3306/pwcho?useSSL=false&serverTimezone=UTC";
+	static final String DB_URL = "jdbc:mysql://Full2020-86381:3306/pfwcho?useSSL=false&serverTimezone=UTC";
 	//static final String DB_URL = "jdbc:mysql://localhost:3306/pwcho?useSSL=false&serverTimezone=UTC";
 
 	static final String USER = "ppaluch";
