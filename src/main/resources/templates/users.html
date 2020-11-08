@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Uzytkownicy</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet"
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet"
+		  th:href="@{../css/demo.css}" type="text/css" />
+</head>
+<body th:style="'background-color: #ffe6e6'">
+
+<div class="container list">
+	<br>
+	<h3 class="title" style = "float:left;">Użytkownicy</h3>
+	<nav class="navbar justify-content-end">
+		<a th:href="@{/api/users/showFormForAdd}"><button type="button"
+														 class="btn btn btn-primary mr-3 mb-2">Add</button></a>
+	</nav>
+	<div class="table-responsive">
+		<table style="background-color:white;" class="table table-hover table-bordered table-sm">
+			<thead>
+			<tr class="table-secondary">
+				<th class="text-center">Id</th>
+				<th class="text-center">Name</th>
+				<th class="text-center">Surname</th>
+				<th></th>
+			<th></th>
+			</tr>
+			</thead>
+			<tbody id="myTable">
+			<tr th:each="user:${users}">
+				<td class="text-center" th:text="${user.id}" />
+				<td class="text-center" th:text="${user.name}" />
+				<td class="text-center" th:text="${user.surname}" />
+				<td class="text-center" ><a
+						th:href="@{/api//users/showFormForUpdate(id=${user.id})}"
+						class="btn btn-info">Edytuj</a></td>
+				<td class="text-center"><a
+						th:href="@{/api/users/deleteUser(id=${user.id})}"
+						class="btn btn-danger">Usuń</a></td>
+
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>
+
+</body>
+
+</html>
