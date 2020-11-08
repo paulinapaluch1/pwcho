@@ -1,11 +1,15 @@
 package com.example.pfwcho;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.sql.*;
-
+@EnableAutoConfiguration
 @SpringBootApplication
+@ComponentScan
+
 public class PfwchoApplication {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
