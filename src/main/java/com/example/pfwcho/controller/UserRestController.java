@@ -24,7 +24,7 @@ public class UserRestController {
 
     @GetMapping("/users")
     public String getAllUsers(Model theModel) throws SQLException, ClassNotFoundException {
-        createTableIfNotExists();
+       // createTableIfNotExists();
         theModel.addAttribute("users", userRepository.findAll());
         return "users";
     }
