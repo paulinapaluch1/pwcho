@@ -20,14 +20,14 @@ public class PfwchoApplication {
 	static final String PASS = "ppaluch";
 
 	public static void main(String[] args) {
-		Connection conn = null;
-		Statement stmt = null;
+		Connection connection = null;
+		Statement statement = null;
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			stmt = conn.createStatement();
+			connection = DriverManager.getConnection(DB_URL, USER, PASS);
+			statement = connection.createStatement();
 
-			ResultSet resultSet = conn.getMetaData().getCatalogs();
+			ResultSet resultSet = connection.getMetaData().getCatalogs();
 			boolean exists = false;
 			while (resultSet.next()) {
 				String databaseName = resultSet.getString(1);
@@ -38,16 +38,16 @@ public class PfwchoApplication {
 			resultSet.close();
 			if(!exists) {
 				String sql = "CREATE DATABASE PFWCHO";
-				stmt.execute(sql);
+				statement.execute(sql);
 			}
 
-			DatabaseMetaData dbm = conn.getMetaData();
+			DatabaseMetaData dbm = connection.getMetaData();
 			ResultSet tables = dbm.getTables(null, null, "user", null);
 			if (tables.next()) {
 			}
 			else {
 				String sql2 = "CREATE TABLE pfwcho.user (`id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(45) DEFAULT NULL, `surname` varchar(45) DEFAULT NULL, PRIMARY KEY (`id`)) ";
-				stmt.execute(sql2);
+				statement.execute(sql2);
 			}
 
 		}catch(SQLException se){
@@ -56,13 +56,13 @@ public class PfwchoApplication {
 			e.printStackTrace();
 		}finally{
 			try{
-				if(stmt!=null)
-					stmt.close();
+				if(statement!=null)
+					statement.close();
 			}catch(SQLException se2){
 			}
 			try{
-				if(conn!=null)
-					conn.close();
+				if(connection!=null)
+					connection.close();
 			}catch(SQLException se){
 				se.printStackTrace();
 			}
